@@ -13,6 +13,8 @@ import co.micol.prj.member.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper map;
+	//@Service를 빼면 @Autowired가 적용이 안된다. 
+	//@Autowired는 컨테이너 안에 있는 애들만 가넝
 
 	@Override
 	public List<MemberVO> memberListSelect() {
