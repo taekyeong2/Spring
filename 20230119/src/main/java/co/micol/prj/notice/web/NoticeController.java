@@ -1,13 +1,17 @@
 package co.micol.prj.notice.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.micol.prj.notice.service.NoticeService;
+import co.micol.prj.notice.vo.NoticeVO;
 
 //각 subject별로 controller를 가지고 있다.
 //나는 컨트롤러이에요 하면서 컨테이너에 올라감
@@ -15,6 +19,7 @@ import co.micol.prj.notice.service.NoticeService;
 public class NoticeController { //notice와 관련된 메서드들은 여기에다 적어줘야함
 	@Autowired
 	private NoticeService noticeService; //NoticeService noticeService = new NoticeServiceImpl()
+
 	
 	//컨트롤러(요청명) 수행될 ㅑ메서드
 	@RequestMapping("/noticeList.do") 
@@ -28,9 +33,11 @@ public class NoticeController { //notice와 관련된 메서드들은 여기에�
 	}
 	
 	@RequestMapping("/noticeSelect.do")
-	public String noticeSelect(Model model) {
+	public String noticeSelect(NoticeVO vo, Model model) {
 		//여기에 수행할 명령을 기술한다.
+		//내가 보내는 변수 이름이 vo객체 변수 이름과 같으면 자동으로 맞춰서(타입까지) 넣어준다.
+		model.addAttribute("vo", noticeService.noticeSelect(vo)); 
 		
-		return "notice/noticeSelect";
+		return "notice/noticeSelectOne";
 	}
 }

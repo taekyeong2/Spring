@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-시작<p>
-<a href="noticeList.do">게시글 목록</a>
+<div align="center">
+    <h1>${message }</h1>	
+</div>
 </body>
 </html>

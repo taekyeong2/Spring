@@ -25,5 +25,10 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return NoticeMapper.noticeSelectList();
 	}
+	
+	@Override
+	public NoticeVO noticeSelect(NoticeVO vo) {
+		return NoticeMapper.noticeSelect(vo);
+	}
 
 }

@@ -4,5 +4,10 @@
 	<select id="noticeSelectList" resultType="co.micol.prj.notice.vo.NoticeVO">
 		SELECT * FROM NOTICE
 	</select>
+	
+	<select id="noticeSelect" resultType="co.micol.prj.notice.vo.NoticeVO">
+		SELECT * FROM NOTICE
+		WHERE NOTICE_ID = #{noticeId}
+	</select>
 
 </mapper>
