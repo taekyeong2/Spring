@@ -45,6 +45,7 @@ function searchList() {
 	let val = document.getElementById("val").value;
 	
 	let payload = 'key='+key+'&val='+val
+	let data = {'key': key, 'val': val}
 // 	fetch(url+"?key="+key+"&val="+val)
 // 		 .then(response => response.json())
 // 		 .then(data => console.log(data));
