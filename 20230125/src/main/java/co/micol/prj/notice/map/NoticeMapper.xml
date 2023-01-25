@@ -18,5 +18,11 @@
 	</delete>
 	
 	<select id="noticeSearch" resultType="co.micol.prj.notice.vo.NoticeVO">
+		SELECT * FROM NOTICE
+		<if test="key == 'all'">where 1=1</if>
+		<if test="key == 'title'">where notice_title like '%'||#{val}||'%'</if>
+		<if test="key == 'subject'">where notice_subject like '%'||#{val}||'%'</if>
+		<if test="key == 'writer'">where notice_writer like '%'||#{val}||'%'</if>
+		<if test="key == 'date'">where notice_date = #{val}</if>
 	</select>
 </mapper>
