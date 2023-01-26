@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- tiles대신 -->
-<jsp:include page="../home/menu.jsp"></jsp:include>
-
 <div align="center">
 	<div>
 		<h1>로 그 인</h1>

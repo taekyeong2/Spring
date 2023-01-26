@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.micol.prj.notice.service.NoticeService;
 
-//@Controller + @ResponseBody 
+//@Controller + @ResponseBody => 호출한 페이지로 결과를 리턴(api만들거나 ajax로 결과를 받아오려 할때 사용)
 @RestController
 public class NoticeRestController {
 	@Autowired

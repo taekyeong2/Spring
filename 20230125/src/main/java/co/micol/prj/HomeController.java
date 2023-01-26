@@ -36,4 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	//메소드는 동일하지만 전달인자가 다름 => 메서드 오버로딩(같은 메서드지만 다른 역할)
+	@RequestMapping("/home.do") 
+	public String home() {
+		return "home";
+	}
+	
 }
