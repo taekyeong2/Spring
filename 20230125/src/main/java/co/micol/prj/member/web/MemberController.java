@@ -20,7 +20,7 @@ public class MemberController {
 	@RequestMapping("/memberListSelect.do")
 	public String memberListSelect(Model model) {
 		
-		model.addAttribute("list", memberService.memberListSelect());
+		model.addAttribute("members", memberService.memberListSelect());
 		return "member/memberListSelect";
 	}
 	

@@ -14,7 +14,12 @@
 	</select>
 	
 	<insert id="memberInsert">
-	
+		INSERT INTO MEMBER
+		<if test="memberAge == 0">VALUES(#{memberId},#{memberName},#{memberPassword},null,
+		       #{memberAddress},#{memberTel},USER)</if>
+		<if test="memberAge != 0">VALUES(#{memberId},#{memberName},#{memberPassword},#{memberAge},
+		       #{memberAddress},#{memberTel},USER)</if>
+
 	</insert>
 	
 	<update id="memberUpdate">
@@ -26,7 +31,9 @@
 	</delete>
 	
 	<select id="isIdCheck" resultType="boolean">
-	
+		SELECT CASE WHEN COUNT(MEMBER_ID) = 1 THEN 0 ELSE 1 END AS ID
+		FROM MEMBER
+		WHERE MEMBER_ID = #{id}
 	</select>
 
 </mapper>
