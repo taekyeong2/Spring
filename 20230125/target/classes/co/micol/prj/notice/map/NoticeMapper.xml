@@ -3,18 +3,43 @@
 <mapper namespace="co.micol.prj.notice.map.NoticeMapper">
 	<select id="noticeList" resultType="co.micol.prj.notice.vo.NoticeVO">
 		SELECT * FROM NOTICE
+		ORDER BY NOTICE_ID DESC
 	</select>
 	
 	<select id="noticeSelect" resultType="co.micol.prj.notice.vo.NoticeVO">
+	 	SELECT * FROM NOTICE
+	 	WHERE NOTICE_ID = #{noticeId}
 	</select>
 	
 	<insert id="noticeInsert">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+		SELECT 
+			CASE WHEN MAX(NOTICE_ID) IS NULL THEN 1 ELSE MAX(NOTICE_ID) + 1 END AS NOTICEID
+		FROM NOTICE
+		</selectKey>
+		INSERT INTO NOTICE
+		VALUES(#{noticeId},#{noticeWriter},sysdate,#{noticeTitle},#{noticeSubject},0
+				,#{noticeFile},#{noticeFileDir})
 	</insert>
 	
+	<update id="noticeHitUpdate">
+		UPDATE NOTICE SET NOTICE_HIT = NOTICE_HIT + 1 WHERE NOTICE_ID = #{id}
+	</update>
+	
 	<update id="noticeUpdate">
+		UPDATE NOTICE
+		<set>
+		<if test="noticeTitle != null">NOTICE_TITLE = #{noticeTitle},</if>
+		<if test="noticeSubject != null">NOTICE_SUBJECT = #{noticeSubject},</if>
+		<if test="noticeFile != null">NOTICE_FILE = #{noticeFile},</if>
+		<if test="noticeFileDir != null">NOTICE_FILE_DIR = #{noticeFileDir}</if>
+		</set>
+		WHERE NOTICE_ID = #{noticeId}
 	</update>
 	
 	<delete id="noticeDelete">
+		DELETE FROM NOTICE
+		WHERE NOTICE_ID = #{noticeId}
 	</delete>
 	
 	<select id="noticeSearch" resultType="co.micol.prj.notice.vo.NoticeVO">
@@ -25,4 +50,11 @@
 		<if test="key == 'writer'">where notice_writer like '%'||#{val}||'%'</if>
 		<if test="key == 'date'">where notice_date = #{val}</if>
 	</select>
+	
+	<!-- 번호업댓 -->
+	<update id="noticeIdUpdate"
+		parameterType="co.micol.prj.notice.vo.NoticeVO">
+		UPDATE notice SET notice_ID = (notice_ID - 1) WHERE notice_ID <![CDATA[>]]>
+		#{id}
+	</update>
 </mapper>

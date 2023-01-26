@@ -52,4 +52,18 @@ public class MemberController {
 		session.invalidate();
 		return "member/memberMessage";
 	}
+	
+	@RequestMapping("/memberJoinForm.do")
+	public String memberJoinForm() {
+		
+		return "member/memberJoinForm";
+	}
+	
+	@PostMapping("/memberJoin.do")
+	public String memberJoin(MemberVO vo, Model model) {
+		memberService.memberInsert(vo);
+		model.addAttribute("message", vo.getMemberName()+"님 회원가입 성공");
+		//바로 뷰리졸버로 안가고 다시 컨트롤러로 간다.
+		return "member/memberMessage";
+	}
 }

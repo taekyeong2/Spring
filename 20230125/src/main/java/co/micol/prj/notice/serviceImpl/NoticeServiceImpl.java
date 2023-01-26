@@ -21,12 +21,18 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public NoticeVO noticeSelect(NoticeVO vo) {
+		noticeHitUpdate(vo.getNoticeId()); 
 		return noitceMapper.noticeSelect(vo);
 	}
 
 	@Override
 	public int noticeInsert(NoticeVO vo) {
 		return noitceMapper.noticeInsert(vo);
+	}
+	
+	@Override
+	public int noticeHitUpdate(int id) {
+		return noitceMapper.noticeHitUpdate(id);
 	}
 
 	@Override
@@ -38,6 +44,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public int noticeDelete(NoticeVO vo) {
 		return noitceMapper.noticeDelete(vo);
 	}
+	
+	@Override
+	public int noticeIdUpdate(int id) {
+		return noitceMapper.noticeIdUpdate(id);
+	}
+	
 
 	@Override
 	public List<NoticeVO> noticeSearch(String Key, String val) {
